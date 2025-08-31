@@ -46,8 +46,7 @@ PriceSense/
 ├── README.md # Project documentation
 └── .gitignore
 
-yaml
-Copy code
+
 
 ---
 

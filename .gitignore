@@ -1,1 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
 .venv/
+env/
+venv/
+ENV/
+.ipynb_checkpoints/
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Model artifacts
+*.pkl
+*.joblib
+
+# Data files
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+models/*
+src/*
+artifacts/*
+
+# Reports and generated plots
+reports/figures/*
+!reports/figures/.gitkeep
+reports/drift_report.csv
+
+# Streamlit cache
+.streamlit/
+
+# Secrets / configs
+*.json
+*.yaml
+*.yml
+.env
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/

@@ -1,0 +1,6 @@
+brand,ram_gb,storage_gb,cpu_type,screen_inch,gpu
+HP,16,8,AMD Ryzen 3,15.6,1
+Dell,8,4,Intel Core i5,14,0
+Lenovo,32,16,Intel Core i7,16,1
+Asus,16,8,AMD Ryzen 5,13.3,1
+Apple,8,8,Apple M1,13,0

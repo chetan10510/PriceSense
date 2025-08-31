@@ -1,144 +1,134 @@
-PriceSense: AI-Powered Laptop Price Prediction
-Overview
+# PriceSense – Laptop Price Prediction Dashboard
 
-PriceSense is a complete machine learning system designed to predict laptop prices based on specifications such as RAM, storage, screen size, GPU, and CPU type. The project demonstrates the entire AI lifecycle, from data collection and preprocessing to model training, explainability, and monitoring.
+PriceSense is a machine learning application for predicting laptop prices based on specifications such as RAM, storage, CPU type, screen size, GPU, and brand.  
+It provides both **interactive predictions** and **explainability insights** using SHAP, along with data drift monitoring.
 
-This repository is structured for clarity and production-readiness, making it useful for businesses, researchers, and recruiters evaluating applied AI/ML skills.
+---
 
-Key Features
+## Features
 
-Laptop Price Prediction
-Predicts prices of laptops from structured specifications.
+- **Laptop Price Prediction**  
+  Upload a CSV file or enter laptop specs manually to get price predictions.
 
-Explainable AI (XAI)
-Uses SHAP to provide both global and local interpretability of model predictions.
+- **Model Explainability**  
+  - SHAP summary and bar plots for global feature importance.  
+  - SHAP waterfall/force plots for individual predictions.
 
-Interactive Dashboard
-Streamlit dashboard with prediction interface, SHAP visualizations, and drift monitoring.
+- **Data Drift Monitoring**  
+  Detects when incoming data deviates from the training dataset distribution.
 
-Data Drift Monitoring
-Detects changes in incoming production data and reports feature drift.
+- **Interactive Dashboard**  
+  Built with [Streamlit](https://streamlit.io) for a clean and responsive UI.
 
-Model Lifecycle Management
-Supports training, saving, loading, and comparing multiple models with versioning.
+---
 
-Project Structure
-├── artifacts/                 # Saved trained models
-├── dashboard/                 # Streamlit app for user interaction
-├── data/                      # Raw and processed datasets
-│   ├── raw/                   
-│   └── processed/
-├── feature/                   # Feature extraction scripts
-├── models/                    # Serialized model files
-├── monitoring/                # Drift detection and monitoring scripts
-├── reports/                   # Reports and generated plots
-│   └── figures/
-├── src/                       # Source code
-│   ├── dashboard/             # Streamlit apps
-│   ├── explainability/        # SHAP-based explanations
-│   ├── model/                 # Model training and comparison
-│   ├── predict/               # Prediction scripts
-│   ├── preprocessing/         
-│   ├── scraping/              # Web scrapers for data
-│   └── visualize/             # Feature importance plots
-└── tests/                     # Sample datasets for testing
+## Project Structure
 
-Tech Stack
+PriceSense/
+│
+├── data/
+│ ├── raw/ # Raw dataset
+│ ├── processed/ # Cleaned and feature-engineered datasets
+│
+├── models/ # Trained ML models
+├── notebooks/ # Jupyter notebooks for exploration & training
+├── reports/
+│ ├── figures/ # SHAP and evaluation plots
+│ ├── drift_report.csv # Drift monitoring results
+│
+├── src/ # Source code for preprocessing, training, monitoring
+│ ├── model/ # Model training pipeline
+│ ├── monitoring/ # Drift detection scripts
+│ └── explain/ # SHAP explainability
+│
+├── app.py # Streamlit dashboard
+├── requirements.txt # Python dependencies
+├── README.md # Project documentation
+└── .gitignore
 
-Programming Language: Python
+yaml
+Copy code
 
-Data Processing: pandas, numpy
+---
 
-Modeling: scikit-learn
+## Installation
 
-Explainability: SHAP
+Clone the repository and set up a virtual environment:
 
-Visualization: matplotlib, seaborn
 
-Dashboarding: Streamlit
-
-Persistence: joblib
-
-How It Works
-
-Data Pipeline
-
-Scrape laptop specs and prices.
-
-Clean and preprocess features (RAM, storage, GPU, CPU type, screen size).
-
-Model Training
-
-Train baseline, enhanced, and tuned models.
-
-Final model: Random Forest Regressor with hyperparameter tuning.
-
-Explainability
-
-Global SHAP summary and bar plots.
-
-Local SHAP explanations for single predictions.
-
-Dashboard
-
-Input laptop specs or upload a CSV file to predict prices.
-
-View model explanations and drift reports.
-
-Monitoring
-
-Detects data drift over time and generates drift reports with visualizations.
-
-Usage
-Clone the Repository
-git clone https://github.com/yourusername/PriceSense.git
+git clone https://github.com/YOUR_USERNAME/PriceSense.git
 cd PriceSense
 
-Install Dependencies
+# Create virtual environment (Windows)
+python -m venv .venv
+.venv\Scripts\activate
+
+# Install dependencies
 pip install -r requirements.txt
+Usage
+Run the Streamlit App
+bash
+Copy code
+streamlit run app.py
+Example Manual Input
+RAM: 16 GB
 
-Run the Dashboard
-streamlit run dashboard/streamlit_app.py
+Storage: 512 GB
 
-Make Predictions
-python src/predict/predict_price.py --input tests/sample_laptops.csv
+CPU Type: Intel Core i5
+
+Screen Size: 15.6 inch
+
+GPU: Integrated
+
+Brand: HP
+
+Prediction output will display estimated price along with SHAP explanation.
+
+Example CSV Format
+csv
+Copy code
+ram_gb,storage_gb,screen_inch,gpu,brand,cpu_type
+16,512,15.6,0,HP,Intel Core i5
+8,256,14.0,0,Dell,AMD Ryzen 3
+Model Training
+The pipeline:
+
+Data Preprocessing
+
+Scaling numerical features
+
+One-hot encoding categorical features
+
+Model
+
+Random Forest Regressor (tuned hyperparameters)
+
+Evaluation
+
+Metrics: MSE, R²
+
+Explainability via SHAP
 
 Results
+Achieved R² ≈ 0.73 on test set.
 
-Achieved strong predictive performance (R² ~0.73+).
+SHAP analysis shows that RAM, CPU type, and storage are the most important factors in determining laptop prices.
 
-Demonstrated explainability via SHAP plots.
+Drift monitoring ensures reliability when deployed on new data.
 
-Built a production-ready system with monitoring and reporting.
+Future Work
+Deploy app on cloud (AWS/GCP/Streamlit Cloud).
 
-Business Value
+Add more advanced models (XGBoost, LightGBM).
 
-Enables e-commerce platforms to estimate fair laptop prices.
+Extend dataset with GPU benchmarks and battery life.
 
-Improves transparency with explainable predictions.
+Build REST API endpoints for integration.
 
-Maintains reliability through drift monitoring and retraining alerts.
-
-Skills Demonstrated
-
-Machine Learning (regression, feature engineering, model tuning)
-
-MLOps (model lifecycle, monitoring, drift detection)
-
-Explainable AI (SHAP integration)
-
-Software Engineering (modularized code, error handling, reproducibility)
-
-Business Impact Thinking (pricing insights for e-commerce)
-
-Future Improvements
-
-Extend to other electronic devices (mobiles, tablets).
-
-Deploy as a cloud-hosted API (FastAPI + Docker).
-
-Automate retraining with CI/CD pipelines.
+Author
+Developed by [Your Name]
+AI/ML Engineer | Machine Learning & NLP Enthusiast
 
 License
-
 This project is licensed under the MIT License.
